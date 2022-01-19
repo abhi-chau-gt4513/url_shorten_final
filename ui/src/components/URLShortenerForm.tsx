@@ -15,36 +15,45 @@ function URLShortenerForm() {
 
         setShortUrl(null);
 
-        const result = await axios.post(`${SERVER_ENDPOINTS}/api/url`,{
-            destination
-        })
-        .then((resp) => resp.data);
+        try {
+            const result = await axios.post(`${SERVER_ENDPOINTS}/api/url`,{
+                destination
+            })
+            .then((resp) => resp.data);
 
-        setShortUrl(result);
-
-        debugger;
-
-        // console.log(result);
+            setShortUrl(result);
+        } catch (error) {
+            alert("Invalid input. Please try again!");
+            
+        }
     }
 
-    return <Box pos="relative" zIndex="2" backgroundColor="tan" padding="4">
-
+    return <Box pos="relative" zIndex="2" backgroundColor="yellow.700" padding="4" textColor={"white"} textAlign={"center"}>
+        
         <form onSubmit={handleSubmit}>
             <InputGroup>
                 <Input 
                     onChange={(e: any) => setDestination(e.target.value)}
-                    placeholder="https://example.com"
+                    placeholder="Please enter url (i.e. https://google.com)"
+                    // textColor="white"
+                    textDecorationLine={'none'}
                 />
-                <Button type="submit">
+                <Button type="submit" textColor={"black"}>
                     SHORTEN
+                    
                 </Button>
             </InputGroup>
         </form>
-        {shortUrl && (
-            <a href={`${SERVER_ENDPOINTS}/${shortUrl?.shortId}`}>
-                {SERVER_ENDPOINTS}/{shortUrl?.shortId}
-            </a>
-        )}
+        <Box textDecorationLine={'underline'}>
+            {shortUrl && (
+                <a href={`${SERVER_ENDPOINTS}/${shortUrl?.shortId}`}>
+                    {SERVER_ENDPOINTS}/{shortUrl?.shortId}
+                    
+                </a>
+
+            )}
+        </Box>
+        
     </Box>
 }
 
