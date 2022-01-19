@@ -22,6 +22,8 @@ function URLShortenerForm() {
             .then((resp) => resp.data);
 
             setShortUrl(result);
+
+            debugger;
         } catch (error) {
             alert("Invalid input. Please try again!");
             
@@ -34,7 +36,7 @@ function URLShortenerForm() {
             <InputGroup>
                 <Input 
                     onChange={(e: any) => setDestination(e.target.value)}
-                    placeholder="Please enter url (i.e. https://google.com)"
+                    placeholder="Please enter url (i.e. https://www.google.com)"
                     // textColor="white"
                     textDecorationLine={'none'}
                 />
@@ -47,8 +49,7 @@ function URLShortenerForm() {
         <Box textDecorationLine={'underline'}>
             {shortUrl && (
                 <a href={`${SERVER_ENDPOINTS}/${shortUrl?.shortId}`}>
-                    {SERVER_ENDPOINTS}/{shortUrl?.shortId}
-                    
+                    {window.location.origin}/{shortUrl?.shortId}
                 </a>
 
             )}
