@@ -16,15 +16,11 @@ function HandleRedirectContainer() {
     shortId: string;
   }>();
 
-  console.log("SERVER_ENDPOINT: " + SERVER_ENDPOINT);
   useEffect(() => {
     async function getData() {
-        console.log(axios
-            .get(`${SERVER_ENDPOINT}/api/url/${shortId}`)
-            .then((res) => setDestination(res.data.destination)));
       return axios
-      .get(`${SERVER_ENDPOINT}/api/url/${shortId}`)
-      .then((res) => setDestination(res.data.destination))
+        .get(`${SERVER_ENDPOINT}/api/url/${shortId}`)
+        .then((res) => setDestination(res.data.destination))
         .catch((error) => {
           setError(error.message);
         });
