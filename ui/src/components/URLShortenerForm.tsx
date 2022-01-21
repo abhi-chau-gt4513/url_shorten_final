@@ -10,12 +10,11 @@ function URLShortenerForm() {
         shortId: string
     } | null>(null);
 
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         setShortUrl(null);
 
-        // const result = null;
         try {
             const result = await axios.post(`${SERVER_ENDPOINTS}/api/url`,{
                 destination
@@ -29,18 +28,8 @@ function URLShortenerForm() {
             alert("Invalid input. Please try again!");
             
         }
-        // const result = await axios.post(`${SERVER_ENDPOINTS}/api/url`,{
-            //     destination
-            // })
-            // .then((resp) => resp.data);
-            
-        // setShortUrl(result);
 
-        // debugger;
-        // console.log(result);
-        // console.log(shortUrl?.shortId);
-        // console.log(SERVER_ENDPOINTS);
-    }
+    };
 
     return <Box pos="relative" zIndex="2" backgroundColor="yellow.700" padding="4" textColor={"white"} textAlign={"center"}>
         
@@ -66,7 +55,7 @@ function URLShortenerForm() {
             )}
         </Box>
         
-    </Box>
+    </Box>;
 }
 
 export default URLShortenerForm;
